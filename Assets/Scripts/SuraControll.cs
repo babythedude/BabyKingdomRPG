@@ -18,12 +18,15 @@ public class SuraControll : MonoBehaviour
 	public float attackTimeDuration;
 	private float attackTimeCounter;
 	
-	
+	public GameObject db_0;
+	public Animator db_animator;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
+		db_animator = db_0.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class SuraControll : MonoBehaviour
     {
 		
 		SuraMoving = false;
+		
 		if (!SuraAttack){
 			if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") <- 0.5f)
 			{
@@ -51,7 +55,7 @@ public class SuraControll : MonoBehaviour
 				SuraAttack = true;
 				myRigidbody.velocity = Vector2.zero;
 				anim.SetBool("SuraAttack", true);
-					
+				db_animator.Play("db");
 			
 			}
 		}
@@ -61,6 +65,7 @@ public class SuraControll : MonoBehaviour
 		if (attackTimeCounter <= 0){
 			SuraAttack = false;
 			anim.SetBool("SuraAttack",false);
+			db_animator.Play("db_empty");
 		}
 		
 		anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
