@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SuraControll : MonoBehaviour
 {
+	
+	
 	public float moveSpeed;
 	private Animator anim;
 	
@@ -24,10 +26,22 @@ public class SuraControll : MonoBehaviour
 	// evil emoji effect
 	public GameObject evil_emoji_0;
 	public Animator evil_emoji_animator;
+	
+	// main_camera_turn base combat
+	public GameObject camera;
+	public TurnBaseCombat combat;
+	private bool SuraTurn;
+	
+	// RK character
+	public GameObject opponent;
+	public RKControll RK;
 
     // Start is called before the first frame update
     void Start()
     {
+		combat = camera.GetComponent<TurnBaseCombat>();
+		SuraTurn = false;
+		
         anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
 		db_animator = db_0.GetComponent<Animator>();
@@ -39,10 +53,16 @@ public class SuraControll : MonoBehaviour
     {
 		
 		SuraMoving = false;
+		if (combat.currentState == TurnBaseCombat.BattleStates.SURATURN){
+			SuraTurn = true;
+		}else{
+			SuraTurn = false;
+		}
 		
-		if (!SuraAttack){
+		if (!SuraAttack && SuraTurn){
 			if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") <- 0.5f)
 			{
+					Debug.Log("horiztonal pressed");
 					transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
 					SuraMoving = true;
 					lastMoveX = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
@@ -62,7 +82,6 @@ public class SuraControll : MonoBehaviour
 				anim.SetBool("SuraAttack", true);
 				db_animator.Play("db");
 				evil_emoji_animator.Play("evil_emoji");
-				SuraTurn = false;
 			
 			}
 		}

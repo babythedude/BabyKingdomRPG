@@ -17,10 +17,18 @@ public class RKControll : MonoBehaviour
 	public float attackTimeDuration;
 	private float attackTimeCounter;
 
+	// main_camera_turn base combat
+	public GameObject camera;
+	public TurnBaseCombat combat;
+	private bool RKTurn;
+	
 	
     // Start is called before the first frame update
     void Start()
     {
+		combat = camera.GetComponent<TurnBaseCombat>();
+		RKTurn = false;
+		
         anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
     }
@@ -30,7 +38,13 @@ public class RKControll : MonoBehaviour
     {
         RKMoving = false;
 		
-		if (!RKAttack){
+		if (combat.currentState == TurnBaseCombat.BattleStates.RKTURN){
+			RKTurn = true;
+		}else{
+			RKTurn = false;
+		}
+		
+		if (!RKAttack && RKTurn){
 			if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") <- 0.5f)
 			{
 					transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
@@ -50,7 +64,6 @@ public class RKControll : MonoBehaviour
 					RKAttack = true;
 					myRigidbody.velocity = Vector2.zero;
 					anim.SetBool("RKAttack", true);
-					RKTurn = false;
 					
 			}
 		}
