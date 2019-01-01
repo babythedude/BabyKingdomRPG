@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SuraControll : MonoBehaviour
 {
-	
 	public float moveSpeed;
 	private Animator anim;
 	
@@ -18,8 +17,13 @@ public class SuraControll : MonoBehaviour
 	public float attackTimeDuration;
 	private float attackTimeCounter;
 	
+	// attack effect
 	public GameObject db_0;
 	public Animator db_animator;
+	
+	// evil emoji effect
+	public GameObject evil_emoji_0;
+	public Animator evil_emoji_animator;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class SuraControll : MonoBehaviour
         anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
 		db_animator = db_0.GetComponent<Animator>();
+		evil_emoji_animator = evil_emoji_0.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -56,6 +61,8 @@ public class SuraControll : MonoBehaviour
 				myRigidbody.velocity = Vector2.zero;
 				anim.SetBool("SuraAttack", true);
 				db_animator.Play("db");
+				evil_emoji_animator.Play("evil_emoji");
+				SuraTurn = false;
 			
 			}
 		}
@@ -66,6 +73,7 @@ public class SuraControll : MonoBehaviour
 			SuraAttack = false;
 			anim.SetBool("SuraAttack",false);
 			db_animator.Play("db_empty");
+			evil_emoji_animator.Play("evil_emoji_empty");
 		}
 		
 		anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
