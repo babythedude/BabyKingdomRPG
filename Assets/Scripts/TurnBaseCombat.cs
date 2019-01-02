@@ -46,7 +46,7 @@ public class TurnBaseCombat : MonoBehaviour
 	void OnGUI(){
 		if (GUILayout.Button("NEXT STATE")){
 			if (currentState == BattleStates.START){
-				currentState = BattleStates.RKTURN;
+				currentState = BattleStates.SURATURN;
 			}else if (currentState == BattleStates.RKTURN){
 				currentState = BattleStates.SURATURN;
 			}else if (currentState == BattleStates.SURATURN){

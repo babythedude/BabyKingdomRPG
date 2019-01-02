@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class RKControll : MonoBehaviour
 {
+	
+	// Movement Section
 	public float moveSpeed;
 	private Animator anim;
-	
+
 	private bool RKMoving;
 	private bool RKAttack;
 	private Vector2 lastMoveX;
@@ -17,20 +19,31 @@ public class RKControll : MonoBehaviour
 	public float attackTimeDuration;
 	private float attackTimeCounter;
 
-	// main_camera_turn base combat
+	// Combat Section
 	public GameObject camera;
 	public TurnBaseCombat combat;
 	private bool RKTurn;
 	
+	// SURA character
+	public GameObject opponent;
+	public SuraControll SURA;
+	
+	private int MaxHP;
+	private int CurHP;
 	
     // Start is called before the first frame update
     void Start()
     {
+		
+		MaxHP = 5000;
+		CurHP = MaxHP;
 		combat = camera.GetComponent<TurnBaseCombat>();
 		RKTurn = false;
 		
         anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
+		
+		SURA = opponent.GetComponent<SuraControll>();
     }
 
     // Update is called once per frame
@@ -64,6 +77,7 @@ public class RKControll : MonoBehaviour
 					RKAttack = true;
 					myRigidbody.velocity = Vector2.zero;
 					anim.SetBool("RKAttack", true);
+					SURA.Attack(true);
 					
 			}
 		}
@@ -74,8 +88,10 @@ public class RKControll : MonoBehaviour
 		if (attackTimeCounter <= 0){
 			RKAttack = false;
 			anim.SetBool("RKAttack",false);
-			
+			SURA.Attack(false);
 		}
+		
+
 		
 		anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
 		anim.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
@@ -83,6 +99,35 @@ public class RKControll : MonoBehaviour
 		anim.SetFloat("LastMoveY", lastMoveY.y);
 		anim.SetBool("RKMoving", RKMoving);
 		
-		
+		// you don't want it to automatically turn when you are walking
+		if (!RKTurn){
+			UpdateFacingDirection();
+		}
     }
+	
+	public void Attack(bool begin){
+	// call when opportent hit rk, do the animation and calculation
+
+		if (begin){
+			
+			CurHP -= 1000;
+			anim.SetBool("RKOnHit", true);
+		}else{
+			anim.SetBool("RKOnHit", false);
+			
+			if (CurHP <= 0){
+				anim.SetBool("Dead", true);
+			}
+		}
+	}
+	
+	// update facing direction according to opponent's movement
+	void UpdateFacingDirection(){
+		
+		Vector3 SURA_current_position = SURA.GetComponent<Transform>().position;
+		Vector3 my_current_position = GetComponent<Transform>().position;
+		
+		lastMoveX = SURA_current_position;
+		lastMoveY = SURA_current_position;
+	}
 }

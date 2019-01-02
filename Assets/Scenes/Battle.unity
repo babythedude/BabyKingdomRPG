@@ -160,7 +160,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75308645, y: 1.4197531}
+  m_Size: {x: 0.7407407, y: 1.3580247}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -176,7 +176,7 @@ Animator:
   m_GameObject: {fileID: 15981590}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 44c81ad8844570846800778777ed876e, type: 2}
+  m_Controller: {fileID: 9100000, guid: a4c8ce55e2af35c47b94e9f284f4c687, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -334,7 +334,7 @@ PrefabInstance:
     - target: {fileID: 7572444939453877647, guid: 48238a4c990549e48bc331ca77e37b6d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7572444939453877647, guid: 48238a4c990549e48bc331ca77e37b6d,
         type: 3}
@@ -439,11 +439,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821006004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.72, y: -0.59, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1348613319}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &821006008
@@ -560,8 +560,9 @@ Transform:
   m_Children:
   - {fileID: 337670934}
   - {fileID: 2113517189}
+  - {fileID: 1814192543}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &893134564
 MonoBehaviour:
@@ -579,12 +580,13 @@ MonoBehaviour:
   attackTimeDuration: 1
   db_0: {fileID: 1814192540}
   db_animator: {fileID: 0}
+  db_transform: {fileID: 0}
   evil_emoji_0: {fileID: 2113517186}
   evil_emoji_animator: {fileID: 0}
   camera: {fileID: 821006004}
   combat: {fileID: 0}
-  opponent: {fileID: 0}
-  RK: {fileID: 0}
+  opponent: {fileID: 1348613315}
+  RK: {fileID: 1348613316}
 --- !u!61 &893134565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -669,6 +671,8 @@ MonoBehaviour:
   attackTimeDuration: 1
   camera: {fileID: 821006004}
   combat: {fileID: 0}
+  opponent: {fileID: 893134560}
+  SURA: {fileID: 893134564}
 --- !u!95 &1348613317
 Animator:
   serializedVersion: 3
@@ -746,9 +750,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.72, y: 0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 821006007}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1348613320
 BoxCollider2D:
@@ -889,12 +894,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814192540}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.027145743, y: 2.1619544, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.887146, y: 1.4519544, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 893134563}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2113517186
 GameObject:

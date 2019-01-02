@@ -56,7 +56,6 @@
      <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
      <Compile Include="Assets\Scripts\RKControll.cs" />
      <Compile Include="Assets\Scripts\SuraControll.cs" />
-     <Compile Include="Assets\Scripts\SuraHealthManager.cs" />
      <Compile Include="Assets\Scripts\TurnBaseCombat.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\CircleObject.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\GameObjectExtensions.cs" />
